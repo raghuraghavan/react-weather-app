@@ -3,12 +3,10 @@ import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-
-import ReduxPromise from 'redux-promise';
-import ReduxThunk from 'redux-thunk';
 import createSagaMiddleware  from 'redux-saga';
 import { watcherSagas } from './sagas/weather_saga';
-
+// Logger with default options
+import logger from 'redux-logger'
 import Log from './middlewares/log';
 
 import './index.css';
@@ -19,7 +17,7 @@ import reducers from './reducers';
 import registerServiceWorker from './registerServiceWorker';
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(reducers, applyMiddleware(Log, sagaMiddleware));
+const store = createStore(reducers, applyMiddleware(Log,logger, sagaMiddleware));
 
 sagaMiddleware.run(watcherSagas);
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Chart from './chart';
-import GoogleMaps from './google_maps';
 import Numeral from 'numeral';
 
 class WeatherList extends Component {
@@ -11,11 +10,10 @@ class WeatherList extends Component {
         const temps = cityData.list.map(weather => weather.main.temp);
         const humidities = cityData.list.map(weather => weather.main.humidity);
         const pressures = cityData.list.map(weather => weather.main.pressure);
-        const { lon, lat } = cityData.city.coord;
 
         return (
             <tr key={name}>
-                <td><GoogleMaps lon={lon} lat={lat} /></td>
+                <td>{name}</td>
                 <td>
                     { Numeral(population).format('0,0.0000') }
                 </td>
